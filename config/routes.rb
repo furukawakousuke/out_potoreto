@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   devise_scope :posters do
     post 'posters/guest_sign_in' , to: 'poster/sessions#guest_sign_in'
   end
+  post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
   devise_for :posters, controllers: {
     registrations: 'posters/registrations',
     passwards: 'posters/passwards'

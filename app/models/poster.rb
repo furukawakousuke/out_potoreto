@@ -19,4 +19,13 @@ class Poster < ApplicationRecord
   foreign_key: :reporter_id, dependent: :destroy
   has_many :reverse_of_reports, class_name: "Report", 
   foreign_key: :reported_id, dependent: :destroy
+    
+    def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |poster|
+      poster.password = SecureRandom.urlsafe_base64
+      poster.user_name = "@guest"
+      # poster.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+      end
+    end
 end
